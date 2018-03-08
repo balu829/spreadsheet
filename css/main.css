@@ -1,0 +1,42 @@
+/*Style the input in each td using classname*/
+.tableCells {
+    border: none;
+    width: 80px;
+    font-size: 14px;
+    padding: 2px;
+}
+
+table {
+    border-collapse: collapse;  
+}
+
+td {
+    border: 1px solid #999;
+    padding: 0;
+}
+
+/*Style first Row and First column using firstchild psuedo class*/ 
+tr:first-child td, td:first-child {
+    background-color: #ccc;
+    padding: 1px 3px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/*change background color on hover using hover psuedo class*/ 
+.tableCells:hover {
+    background-color: #eee;
+}
+
+/*change background color on focus using focus psuedo class*/ 
+.tableCells:focus {
+    background-color: #ccf;
+}
+
+.tableCells:not(:focus) {
+    text-align: right;
+}
+
+button{
+    margin-bottom: 20px;
+}
