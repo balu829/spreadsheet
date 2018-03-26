@@ -19,8 +19,25 @@ var insertButton=document.getElementById("insert");//Get insert button and add E
 
 var insertRows=function(){
     var rows = document.getElementById("ssTable").getElementsByTagName("tr").length; //Get no.of rows
-    var columns=document.getElementById('ssTable').rows[0].cells.length;  //Get no.of Columns
+    
+    if(rows==0){
+        var row = document.getElementById("ssTable").insertRow(-1); //Js insertRow function... Insert row range is [-1,0]
+       
+         for(let j=0; j<9; j++){
+            if(j<27){
+            var letter=String.fromCharCode("A".charCodeAt(0)+j-1); //Getting Alphabetic numbers using fromCHarCode and CharCode At functions
+        }else{
+            var letter="A"+String.fromCharCode("A".charCodeAt(0)+j-27);
+        }
+         //Conditional Ternary operator to add cells/letters/numbers
+            row.insertCell(-1).innerHTML= i&&j ? "<input id='"+ letter+i +"'  class='tableCells'/>" : i||letter;
+            addingEvents();
+        }
+    }
+    else{
+        var columns=document.getElementById('ssTable').rows[0].cells.length;  //Get no.of Columns
     var newRow = document.getElementById("ssTable").insertRow(-1);  //Insert New Column
+    
         for(let k=0; k<columns; k++){
             if(k<27){
                 var letter=String.fromCharCode("A".charCodeAt(0)+k-1);
@@ -31,6 +48,7 @@ var insertRows=function(){
                 newRow.insertCell(-1).innerHTML= k ? "<input id='"+ letter+rows +"' class='tableCells'/>" : rows;
                 addingEvents();
             }
+        }
         
 };
 insertButton.addEventListener('click',insertRows);
@@ -53,6 +71,7 @@ var insertRowsAt=function(){
             var letter="A"+String.fromCharCode("A".charCodeAt(0)+k-27);
         }
             newRow.insertCell(-1).innerHTML= k ? "<input id='"+ letter+rowNo +"' class='tableCells'/>" : rowNo;
+            addingEvents();
         }
     //Update cells and row no after the inserted column
     for(let i=rowNo; i<rowLength+1; i++){
@@ -65,6 +84,7 @@ var insertRowsAt=function(){
             }
 			//Conditional Ternary operator to add cells/letters/numbers
             table.rows[i].cells[k].innerHTML= k ? "<input id='"+ letter+i +"' value='"+"'/>" : i;
+            addingEvents();
             }
         }
 };
@@ -110,6 +130,7 @@ var deleteColumn=function(){
     }
 };
 deleteColumnButton.addEventListener('click',deleteColumn);
+
 //Adding Events to table cells
 var allCells=document.getElementsByClassName("tableCells"); //Get all the input fields using class name
 
@@ -179,7 +200,7 @@ var allCells=document.getElementsByClassName("tableCells"); //Get all the input 
     // Add the link to your DOM
     document.body.appendChild(downloadLink);
 
-    // Lanzamos
+    // download
     downloadLink.click();
 }
 
